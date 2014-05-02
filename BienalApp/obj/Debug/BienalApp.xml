@@ -1,0 +1,65 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+BienalApp
+</name>
+</assembly>
+<members>
+<member name="P:PhoneApp1.App.RootFrame">
+	<summary>
+ Proporcionar acceso sencillo al marco raíz de la aplicación telefónica.
+ </summary>
+	<returns>Marco raíz de la aplicación telefónica.</returns>
+</member><member name="M:PhoneApp1.App.#ctor">
+	<summary>
+ Constructor para el objeto Application.
+ </summary>
+</member><member name="M:PhoneApp1.App.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="M:PhoneApp1.MainPage.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
+</member><member name="P:PhoneApp1.AppResources.ResourceManager">
+	<summary>
+  Devuelve la instancia de ResourceManager almacenada en caché usada por esta clase.
+</summary>
+</member><member name="P:PhoneApp1.AppResources.Culture">
+	<summary>
+  Invalida la propiedad CurrentUICulture del subproceso actual para todas las
+  búsquedas de recursos que usan esta clase de recurso fuertemente tipado.
+</summary>
+</member><member name="P:PhoneApp1.AppResources.ResourceFlowDirection">
+	<summary>
+  Busca una cadena traducida similar a LeftToRight.
+</summary>
+</member><member name="P:PhoneApp1.AppResources.ResourceLanguage">
+	<summary>
+  Busca una cadena traducida similar a us-EN.
+</summary>
+</member><member name="P:PhoneApp1.AppResources.ApplicationTitle">
+	<summary>
+  Busca una cadena traducida similar a MI APLICACIÓN.
+</summary>
+</member><member name="P:PhoneApp1.AppResources.AppBarButtonText">
+	<summary>
+  Busca una cadena traducida similar a botón
+</summary>
+</member><member name="P:PhoneApp1.AppResources.AppBarMenuItemText">
+	<summary>
+  Busca una cadena traducida similar a Elemento de menú.
+</summary>
+</member><member name="T:PhoneApp1.AppResources">
+	<summary>
+  Clase de recurso fuertemente tipado para buscar cadenas traducidas, etc.
+</summary>
+</member><member name="T:PhoneApp1.LocalizedStrings">
+	<summary>
+ Proporciona acceso a los recursos de cadena.
+ </summary>
+</member>
+</members>
+</doc>
