@@ -1,6 +1,8 @@
 ﻿Imports System.Windows.Media.Imaging
 Imports System.Net.Http
 Imports Newtonsoft.Json.Linq
+Imports WP8Classes
+
 
 
 Partial Public Class ListaEsculturas
@@ -12,13 +14,17 @@ Partial Public Class ListaEsculturas
         Public Property nid As String
     End Class
 
+    Dim lastRefreshed As DateTime
     Dim listaEsculturas As List(Of esculturaElement)
     Dim cargado As Boolean
+    Dim currentPage As Integer
+    Dim page As Integer
 
     Public Sub New()
         InitializeComponent()
         listaEsculturas = New List(Of esculturaElement)
         cargado = False
+        page = 1
     End Sub
 
     Sub setPG(val As Boolean)
@@ -36,7 +42,6 @@ Partial Public Class ListaEsculturas
             LoadEsculturas()
         End If
         llEsculturas.SelectedItem = Nothing
-
     End Sub
 
     Private Async Sub LoadEsculturas()
@@ -44,12 +49,16 @@ Partial Public Class ListaEsculturas
         Dim response As Http.HttpResponseMessage
         Dim content As String
         Try
-            response = Await http.GetAsync(App.baseurl + "/api/v1/node?parameters[type]=escultura")
+            response = Await http.GetAsync(App.baseurl + "/api/v1/node?parameters[type]=escultura&pagesize=5&page=" + page.ToString)
             response.EnsureSuccessStatusCode()
         Catch hre As HttpRequestException
             MessageBox.Show("Algo anduvo mal con el request :/")
             Exit Sub
         End Try
+        Dim lastitem As esculturaElement = Nothing
+        If llEsculturas.ItemsSource IsNot Nothing Then
+            lastitem = llEsculturas.ItemsSource(llEsculturas.ItemsSource.Count - 1)
+        End If
         content = Await response.Content.ReadAsStringAsync
         Dim array As JArray = JArray.Parse(content)
         For Each token As JToken In array
@@ -69,7 +78,18 @@ Partial Public Class ListaEsculturas
             tempEscultura.ImageSource = New BitmapImage(New Uri(urlFoto, UriKind.Absolute))
             listaEsculturas.Add(tempEscultura)
         Next
+        llEsculturas.ItemsSource = Nothing
         llEsculturas.ItemsSource = listaEsculturas
+        If lastitem IsNot Nothing Then
+            llEsculturas.ScrollTo(lastitem)
+        End If
+        If page = 1 Then
+            Dim pullDetector As New WP8PullDetector
+            pullDetector.Bind(llEsculturas)
+            AddHandler pullDetector.Compression, AddressOf onCompression
+        End If
+        lastRefreshed = DateTime.Now
+        page += 1
         cargado = True
         setPG(False)
     End Sub
@@ -80,4 +100,12 @@ Partial Public Class ListaEsculturas
             NavigationService.Navigate(New Uri("/Escultura.xaml?nid=" + item.nid.Trim, UriKind.RelativeOrAbsolute))
         End If
     End Sub
+
+    Sub onCompression(sender As Object, e As CompressionEventArgs)
+        If DateTime.Now - lastRefreshed > TimeSpan.FromSeconds(5) And e.Type = CompressionType.Bottom Then
+            setPG(True)
+            LoadEsculturas()
+        End If
+    End Sub
+
 End Class

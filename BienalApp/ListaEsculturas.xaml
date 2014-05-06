@@ -16,29 +16,26 @@
     <!--LayoutRoot es la cuadrícula raíz donde se coloca todo el contenido de la página-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ScrollViewer Grid.Row="1">
-            <StackPanel>
-                <TextBlock Text="Esculturas" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-                <phone:LongListSelector x:Name="llEsculturas">
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Height="150" Margin="0,0,0,20">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <Image Grid.Row="0" Source="{Binding ImageSource}" Stretch="UniformToFill"/>
-                                <TextBlock Text="{Binding Title}" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                            </Grid>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>
-            </StackPanel>            
-        </ScrollViewer>
+       <TextBlock Grid.Row="0" Text="Esculturas" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            
 
+        <phone:LongListSelector Grid.Row="1" x:Name="llEsculturas">
+            <phone:LongListSelector.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="200" Margin="0,0,0,20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Source="{Binding ImageSource}" Stretch="UniformToFill"/>
+                        <TextBlock Text="{Binding Title}" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                    </Grid>
+                </DataTemplate>
+            </phone:LongListSelector.ItemTemplate>
+        </phone:LongListSelector>
 
     </Grid>
 

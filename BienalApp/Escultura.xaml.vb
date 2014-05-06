@@ -30,6 +30,7 @@ Partial Public Class Page1
     End Sub
 
     Private Async Sub LoadEscultura(nid As String)
+        Dim settings As IsolatedStorageSettings = IsolatedStorageSettings.ApplicationSettings
         Dim http As New HttpClient
         Dim response As HttpResponseMessage
         Dim content As String
@@ -94,57 +95,81 @@ Partial Public Class Page1
         Dim desc As String = array.Item("body").Item("und").Item(0).Item("value").ToString.Trim
         tbDesc.Text = desc
         Dim idAutor As String = array.Item("field_autor").Item("und").Item(0).Item("target_id").ToString
-        Try
-            response = Await http.GetAsync(App.baseurl + "/api/v1/node/" + idAutor)
-            response.EnsureSuccessStatusCode()
-        Catch hre As HttpRequestException
-            MessageBox.Show("Algo anduvo mal con el request :/")
-            setPG(False)
-            Exit Sub
-        End Try
-        content = Await response.Content.ReadAsStringAsync
-        Dim arrayAutor As JObject = JObject.Parse(content)
-        Dim autor As String = arrayAutor.Item("title").ToString
-        tbAutor.Text = autor
+        Dim autor As String
+        If settings.Contains("autor:" + idAutor) Then
+            autor = settings("autor:" + idAutor)
+        Else
+            Try
+                response = Await http.GetAsync(App.baseurl + "/api/v1/node/" + idAutor)
+                response.EnsureSuccessStatusCode()
+            Catch hre As HttpRequestException
+                MessageBox.Show("Algo anduvo mal con el request :/")
+                setPG(False)
+                Exit Sub
+            End Try
+            content = Await response.Content.ReadAsStringAsync
+            Dim arrayAutor As JObject = JObject.Parse(content)
+            autor = arrayAutor.Item("title").ToString
+            settings.Add("autor:" + idAutor, autor)
+        End If
+        tbAutor.Text = Autor
         tbElab.Text = "Año de elaboración: " + array.Item("field_ano").Item("und").Item(0).Item("value").ToString.Trim
         Dim idEvento As String = array.Item("field_evento").Item("und").Item(0).Item("target_id").ToString
-        Try
-            response = Await http.GetAsync(App.baseurl + "/api/v1/node/" + idEvento)
-            response.EnsureSuccessStatusCode()
-        Catch hre As HttpRequestException
-            MessageBox.Show("Algo anduvo mal con el request :/")
-            setPG(False)
-            Exit Sub
-        End Try
-        content = Await response.Content.ReadAsStringAsync
-        Dim arrayEvento As JObject = JObject.Parse(content)
-        Dim evento As String = "Se presentó en " + arrayEvento.Item("title").ToString.Trim
+        Dim evento As String
+        If settings.Contains("evento:" + idEvento) Then
+            evento = "Se presentó en " + settings("evento:" + idEvento).ToString
+        Else
+            Try
+                response = Await http.GetAsync(App.baseurl + "/api/v1/node/" + idEvento)
+                response.EnsureSuccessStatusCode()
+            Catch hre As HttpRequestException
+                MessageBox.Show("Algo anduvo mal con el request :/")
+                setPG(False)
+                Exit Sub
+            End Try
+            content = Await response.Content.ReadAsStringAsync
+            Dim arrayEvento As JObject = JObject.Parse(content)
+            evento = "Se presentó en " + arrayEvento.Item("title").ToString.Trim
+            settings.Add("evento:" + idEvento, arrayEvento.Item("title").ToString.Trim)
+        End If
         tbEvento.Text = evento
         Dim idTipo As String = array.Item("field_tipo").Item("und").Item(0).Item("tid").ToString.Trim
-        Try
-            response = Await http.GetAsync(App.baseurl + "/api/v1/taxonomy_term/" + idTipo)
-            response.EnsureSuccessStatusCode()
-        Catch hre As HttpRequestException
-            MessageBox.Show("Algo anduvo mal con el request :/")
-            setPG(False)
-            Exit Sub
-        End Try
-        content = Await response.Content.ReadAsStringAsync
-        Dim arrayTipo As JObject = JObject.Parse(content)
-        Dim tipo As String = "Tipo: " + arrayTipo.Item("name").ToString.Trim
+        Dim tipo As String
+        If settings.Contains("tipo:" + idTipo) Then
+            tipo = "Tipo: " + settings("tipo:" + idTipo).ToString
+        Else
+            Try
+                response = Await http.GetAsync(App.baseurl + "/api/v1/taxonomy_term/" + idTipo)
+                response.EnsureSuccessStatusCode()
+            Catch hre As HttpRequestException
+                MessageBox.Show("Algo anduvo mal con el request :/")
+                setPG(False)
+                Exit Sub
+            End Try
+            content = Await response.Content.ReadAsStringAsync
+            Dim arrayTipo As JObject = JObject.Parse(content)
+            tipo = "Tipo: " + arrayTipo.Item("name").ToString.Trim
+            settings.Add("tipo:" + idTipo, arrayTipo.Item("name").ToString.Trim)
+        End If
         tbTipo.Text = tipo
         Dim idMaterial As String = array.Item("field_material").Item("und").Item(0).Item("tid").ToString
-        Try
-            response = Await http.GetAsync(App.baseurl + "/api/v1/taxonomy_term/" + idMaterial)
-            response.EnsureSuccessStatusCode()
-        Catch hre As HttpRequestException
-            MessageBox.Show("Algo anduvo mal con el request :/")
-            setPG(False)
-            Exit Sub
-        End Try
-        content = Await response.Content.ReadAsStringAsync
-        Dim arrayMaterial As JObject = JObject.Parse(content)
-        Dim material As String = "Material: " + arrayMaterial.Item("name").ToString.Trim
+        Dim material As String
+        If settings.Contains("material:" + idMaterial) Then
+            material = "Material: " + settings("material:" + idMaterial).ToString
+        Else
+            Try
+                response = Await http.GetAsync(App.baseurl + "/api/v1/taxonomy_term/" + idMaterial)
+                response.EnsureSuccessStatusCode()
+            Catch hre As HttpRequestException
+                MessageBox.Show("Algo anduvo mal con el request :/")
+                setPG(False)
+                Exit Sub
+            End Try
+            content = Await response.Content.ReadAsStringAsync
+            Dim arrayMaterial As JObject = JObject.Parse(content)
+            material = "Material: " + arrayMaterial.Item("name").ToString.Trim
+            settings.Add("material:" + idMaterial, arrayMaterial.Item("name").ToString.Trim)
+        End If
         tbMaterial.Text = material
         'Los premios, con un for each re loco
         For Each token As JToken In array.Item("field_premios").Item("und")

@@ -27,6 +27,10 @@ InitializeComponent
 	<summary>
 InitializeComponent
 </summary>
+</member><member name="M:PhoneApp1.PanoramaPage1.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
 </member><member name="M:PhoneApp1.Autor.InitializeComponent">
 	<summary>
 InitializeComponent
@@ -65,10 +69,6 @@ InitializeComponent
   Clase de recurso fuertemente tipado para buscar cadenas traducidas, etc.
 </summary>
 </member><member name="M:PhoneApp1.MainPage.InitializeComponent">
-	<summary>
-InitializeComponent
-</summary>
-</member><member name="M:PhoneApp1.QrReader.InitializeComponent">
 	<summary>
 InitializeComponent
 </summary>
