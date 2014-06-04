@@ -2,6 +2,7 @@
 Imports Newtonsoft.Json.Linq
 Imports System.Windows.Media.Imaging
 Imports System.IO.IsolatedStorage
+Imports WP8Classes
 
 
 
@@ -15,13 +16,17 @@ End Class
 Partial Public Class Autor
     Inherits PhoneApplicationPage
 
-
-    Dim listaAutores As List(Of autorElement)
+    Dim lastRefreshed As DateTime
     Dim cargado As Boolean
+    Dim currentPage As Integer
+    Dim page As Integer
+    Dim listaAutores As List(Of autorElement)
+
     Public Sub New()
         InitializeComponent()
         listaAutores = New List(Of autorElement)
         cargado = False
+        page = 0
     End Sub
 
     Protected Overrides Sub OnNavigatedTo(e As NavigationEventArgs)
@@ -38,24 +43,27 @@ Partial Public Class Autor
     End Sub
 
     Sub setPG(val As Boolean)
-        SystemTray.ProgressIndicator.IsVisible = val
+        If SystemTray.ProgressIndicator IsNot Nothing Then
+            SystemTray.ProgressIndicator.IsVisible = val
+        End If
     End Sub
 
     Private Async Sub LoadAutores()
         Dim http As New HttpClient
-        Dim response = Await http.GetAsync(App.baseurl + "/api/v1/node?parameters[type]=autores")
+        Dim response = Await http.GetAsync(App.baseurl + "/api/v1/autores?pagesize=6&page=" + page.ToString)
         Dim content As String = Await response.Content.ReadAsStringAsync
-        Dim array As JArray = JArray.Parse(content)
+        Dim json As JToken = JToken.Parse(content)
+        Dim array As JArray = json.Item("data")
         Dim storage As IsolatedStorageFile = IsolatedStorageFile.GetUserStoreForApplication
+        Dim lastitem As autorElement = Nothing
+        If llAutores.ItemsSource IsNot Nothing Then
+            lastitem = llAutores.ItemsSource(llAutores.ItemsSource.Count - 1)
+        End If
         For Each token As JToken In array
             Dim tempautor As autorElement = New autorElement
-            tempautor.nid = token.Item("nid").ToString
-            tempautor.Nombre = token.Item("title").ToString.Trim
-            response = Await http.GetAsync(App.baseurl + "/api/v1/node/" + token.Item("nid").ToString)
-            content = Await response.Content.ReadAsStringAsync
-            Dim jAutor As JObject = JObject.Parse(content)
-            tempautor.Desc = jAutor.Item("body").Item("und").Item(0).Item("value").ToString.Trim
-            Dim urlFoto As String = jAutor.Item("field_fotos").Item("und").Item(0).Item("uri").ToString.Replace("public://", App.baseurl + "/sites/default/files/")
+            tempautor.nid = token.Item("id").ToString
+            tempautor.Nombre = token.Item("name").ToString.Trim
+            Dim urlFoto As String = token.Item("image").ToString.Trim
             Dim nombreFoto As String = urlFoto.Split("/")(urlFoto.Split("/").Count - 1)
             Dim bmimage As BitmapImage
             If storage.FileExists(nombreFoto) Then
@@ -89,7 +97,18 @@ Partial Public Class Autor
             tempautor.ImageSource = bmimage
             listaAutores.Add(tempautor)
         Next
+        llAutores.ItemsSource = Nothing
         llAutores.ItemsSource = listaAutores
+        If lastitem IsNot Nothing Then
+            llAutores.ScrollTo(lastitem)
+        End If
+        If page = 0 Then
+            Dim pullDetector As New WP8PullDetector
+            pullDetector.Bind(llAutores)
+            AddHandler pullDetector.Compression, AddressOf onCompression
+        End If
+        lastRefreshed = DateTime.Now
+        page += 1
         cargado = True
         setPG(False)
     End Sub
@@ -102,6 +121,11 @@ Partial Public Class Autor
         
     End Sub
 
-
+    Sub onCompression(sender As Object, e As CompressionEventArgs)
+        If DateTime.Now - lastRefreshed > TimeSpan.FromSeconds(1.5) And e.Type = CompressionType.Bottom Then
+            setPG(True)
+            LoadAutores()
+        End If
+    End Sub
 
 End Class

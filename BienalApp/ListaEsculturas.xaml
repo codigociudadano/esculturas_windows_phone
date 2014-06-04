@@ -31,7 +31,8 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Image Grid.Row="0" Source="{Binding ImageSource}" Stretch="UniformToFill"/>
-                        <TextBlock Text="{Binding Title}" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                        <StackPanel Background="Black" Height="25" Opacity="0.5" VerticalAlignment="Bottom"/>
+                        <TextBlock Text="{Binding Title}" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
                     </Grid>
                 </DataTemplate>
             </phone:LongListSelector.ItemTemplate>

@@ -10,7 +10,7 @@ Partial Public Class App
     ''' </summary>
     ''' <returns>Marco raíz de la aplicación telefónica.</returns>
     Public Shared Property RootFrame As PhoneApplicationFrame
-    Public Shared Property baseurl As String = "http://esculturas.codigociudadano.com.ar"
+    Public Shared Property baseurl As String = "http://dev.resistenciarte.org"
 
     ''' <summary>
     ''' Constructor para el objeto Application.

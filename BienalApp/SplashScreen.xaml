@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="PhoneApp1.ShowAutor"
+    x:Class="PhoneApp1.SplashScreen"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -11,28 +11,11 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
 
     <!--LayoutRoot es la cuadrícula raíz donde se coloca todo el contenido de la página-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" x:Name="tbTitle" TextWrapping="Wrap" Text="" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-
-        <!--TitlePanel contiene el nombre de la aplicación y el título de la página-->
-        <ScrollViewer Grid.Row="1">
-            <StackPanel Margin="12,17,12,0">
-                <StackPanel x:Name="spFotos"/>
-                <TextBlock x:Name="tbDesc" TextWrapping="Wrap" Margin="12,0,0,0" Style="{StaticResource PhoneTextNormalStyle}"/>
-            </StackPanel>
-            
-        </ScrollViewer>
-        
-
-        <!--ContentPanel. Colocar aquí el contenido adicional-->
-
+        <Image Source="SplashScreenImage.png" Stretch="UniformToFill"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

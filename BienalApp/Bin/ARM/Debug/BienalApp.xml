@@ -68,6 +68,10 @@ InitializeComponent
 	<summary>
   Clase de recurso fuertemente tipado para buscar cadenas traducidas, etc.
 </summary>
+</member><member name="M:PhoneApp1.idObra.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
 </member><member name="M:PhoneApp1.MainPage.InitializeComponent">
 	<summary>
 InitializeComponent
@@ -80,6 +84,10 @@ InitializeComponent
 	<summary>
  Proporciona acceso a los recursos de cadena.
  </summary>
+</member><member name="M:PhoneApp1.SplashScreen.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
 </member>
 </members>
 </doc>

@@ -35,4 +35,5 @@ C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\obj\AR
 C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\Microsoft.Phone.Controls.dll
 C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\obj\ARM\Debug\Main.g.i.vb
 C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\WP8Classes.dll
-C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\WP8Classes.pdb
+C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\obj\ARM\Debug\idObra.g.i.vb
+C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\obj\ARM\Debug\SplashScreen.g.i.vb

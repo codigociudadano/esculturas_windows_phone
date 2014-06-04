@@ -19,25 +19,23 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Autores" Margin="9,-7,0,5" Style="{StaticResource PhoneTextTitle1Style}"/>
 
 
 
         <!--ContentPanel. Colocar aquí el contenido adicional-->
-        <ScrollViewer Grid.Row="1">
-            <StackPanel x:Name="ContentPanel" Margin="12,0,12,0">
-                <TextBlock Text="Autores" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-                
-                                
-                <phone:LongListSelector x:Name="llAutores">
+            <Grid Grid.Row="1" x:Name="ContentPanel" Margin="12,0,12,0">
+                                               
+                <phone:LongListSelector x:Name="llAutores" Height="674">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="0,0,0,10">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="120"/>
+                                    <RowDefinition Height="130"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <Image Height="120" Width="120" HorizontalAlignment="Left" Source="{Binding ImageSource}"/>
-                                <StackPanel Grid.Row="0" Margin="125,0,0,0">
+                                <Image Height="130" Width="130" HorizontalAlignment="Left" Source="{Binding ImageSource}" Stretch="UniformToFill"/>
+                                <StackPanel Grid.Row="0" Margin="135,0,0,0">
                                     <TextBlock Text="{Binding Nombre}" TextWrapping="Wrap" Style="{StaticResource PhoneTextGroupHeaderStyle}" Margin="0,0,0,0"/>
                                     <TextBlock Text="{Binding Desc}" TextWrapping="Wrap"/>
                                 </StackPanel>
@@ -45,8 +43,7 @@
                         </DataTemplate>
                     </phone:LongListSelector.ItemTemplate>
                 </phone:LongListSelector>
-            </StackPanel>
-        </ScrollViewer>        
+            </Grid>
     </Grid>
 
 </phone:PhoneApplicationPage>

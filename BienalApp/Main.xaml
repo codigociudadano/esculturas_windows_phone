@@ -15,20 +15,53 @@
 
     <!--LayoutRoot contiene la cuadrícula raíz donde se coloca el resto del contenido de la página-->
     <Grid x:Name="LayoutRoot">
+
         <phone:Panorama Title="ResistenciArte">
-
+            <phone:Panorama.Background>
+                <ImageBrush ImageSource="/Assets/statue.jpg" Stretch="UniformToFill"/>
+            </phone:Panorama.Background>
             <!--Elemento Panorama uno-->
-            <phone:PanoramaItem Header="Destacados">
+            <phone:PanoramaItem>
                 <StackPanel>
-                    <ScrollViewer Height="415">
-                        <StackPanel Margin="0,0,0,0">
-                            <Grid Height="200">
-                                <Image Width="auto" Source="/Assets/statue.jpg" Stretch="UniformToFill"/>
-                                <TextBlock Foreground="Black" Text="Hombre Pensando" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
+                    <Grid Height="500">
+                        <Grid VerticalAlignment="Bottom" Width="395">
+                            <Grid.Background>
+                                <SolidColorBrush Color="Black" Opacity="0.7"></SolidColorBrush>
+                            </Grid.Background>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="25"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Hombre Pensando" Margin="0,0,5,1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Style="{StaticResource PhoneTextLargeStyle}"/>
+                            <TextBlock Grid.Row="1" Text="Michel Angelo" Margin="0,0,5,1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Style="{StaticResource PhoneTextLargeStyle}" FontSize="25"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Width="395">
+                        <Grid.Background>
+                            <SolidColorBrush Color="Black" Opacity="0.7"></SolidColorBrush>
+                        </Grid.Background>
+                        <Button x:Name="btnIdObra" Content="Obras cercanas a mi" VerticalAlignment="Bottom"/>
 
-                                <TextBlock Text="Hombre Pensando" Margin="0,0,1,1" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
+                    </Grid>
+                </StackPanel>                
+            </phone:PanoramaItem>
 
-                            </Grid>
+            <!--Elemento Panorama dos-->
+            <phone:PanoramaItem Header="Catálogo">
+                <StackPanel>
+                    <StackPanel>
+                        <StackPanel.Background>
+                            <SolidColorBrush Color="Black" Opacity="0.7"></SolidColorBrush>
+                        </StackPanel.Background>
+                        <TextBlock Text="Esculturas" Margin="15,5,0,15" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="Esculturas"/>
+                        <TextBlock Text="Autores" Margin="15,5,0,15" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="Autores"/>
+
+                    </StackPanel>
+                    </StackPanel>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem>
+                <StackPanel>
                             <TextBlock Text="Novedades" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                             <StackPanel>
                                 <TextBlock Text="Título 1" Style="{StaticResource PhoneTextLargeStyle}"/>
@@ -46,21 +79,15 @@
                                 <TextBlock Text="Título 4" Style="{StaticResource PhoneTextLargeStyle}"/>
                                 <TextBlock Text="Excerpt 4" Style="{StaticResource PhoneTextNormalStyle}"/>
                             </StackPanel>
-                            <TextBlock Text="(cc) Cod Ciudadano - Fund Urunday" Margin="0,15,0,15" Style="{StaticResource PhoneTextLargeStyle}" TextDecorations="Underline"/>
-                        </StackPanel>
-                    </ScrollViewer>
-                    <Button Content="Identificar Obra" VerticalAlignment="Bottom"/>
-                </StackPanel>                
-            </phone:PanoramaItem>
+                    <Grid Height="206">
+                        <TextBlock VerticalAlignment="Bottom" Text="(cc) Cod Ciudadano - Fund Urunday" Margin="0,15,0,15" Style="{StaticResource PhoneTextLargeStyle}" TextDecorations="Underline"/>
 
-            <!--Elemento Panorama dos-->
-            <phone:PanoramaItem Header="Catálogo">
-                <StackPanel>
-                    <TextBlock Text="Esculturas" Margin="15,5,0,15" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="Esculturas"/>
-                    <TextBlock Text="Autores" Margin="15,5,0,15" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="Autores"/>
+                    </Grid>        
+                    
                 </StackPanel>
             </phone:PanoramaItem>
         </phone:Panorama>
+        
     </Grid>
 
 </phone:PhoneApplicationPage>

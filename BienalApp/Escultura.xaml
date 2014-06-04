@@ -40,7 +40,7 @@
                 <TextBlock x:Name="tbEvento" Style="{StaticResource PhoneTextTitle2Style}"/>
                 <TextBlock x:Name="tbTipo" Style="{StaticResource PhoneTextTitle2Style}"/>
                 <TextBlock x:Name="tbMaterial" Style="{StaticResource PhoneTextTitle2Style}"/>
-                <TextBlock Text="Premios" Style="{StaticResource PhoneTextTitle2Style}"/>
+                <TextBlock x:Name="tbPremios" Text="Premios" Style="{StaticResource PhoneTextTitle2Style}"/>
                 <StackPanel x:Name="spPremios">
                     
                 </StackPanel>             

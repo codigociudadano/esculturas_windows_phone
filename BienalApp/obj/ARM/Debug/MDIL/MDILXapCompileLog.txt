@@ -8,6 +8,8 @@ MDIL image C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\Biena
 
 
 File C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\BienalApp.dll output C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\obj\ARM\Debug\MDIL\BienalApp.dll
+Processing file: C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\Microsoft.Phone.Controls.dll
+File C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\Microsoft.Phone.Controls.dll is not in the compile filter. Skipping.
 Processing file: C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\Newtonsoft.Json.dll
 File C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\Newtonsoft.Json.dll is not in the compile filter. Skipping.
 Processing file: C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\Nokia.Graphics.Imaging.dll
@@ -30,5 +32,7 @@ Processing file: C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp
 File C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\System.Net.Http.Primitives.dll is not in the compile filter. Skipping.
 Processing file: C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\WMAppManifest.xml
 File C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\WMAppManifest.xml is not in the compile filter. Skipping.
+Processing file: C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\WP8Classes.dll
+File C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\WP8Classes.dll is not in the compile filter. Skipping.
 Processing file: C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\zxing.wp8.0.dll
 File C:\Users\Carlos\Documents\Visual Studio 2013\Projects\BienalApp\BienalApp\Bin\ARM\Debug\MDIL\zxing.wp8.0.dll is not in the compile filter. Skipping.
